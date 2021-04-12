@@ -31,6 +31,7 @@ body{
   height: 280px;
   perspective: 1000px;
   cursor: pointer;
+  border: 1px solid #fff;
 }
 
 .flip-card .flip-card-front{
@@ -67,10 +68,10 @@ body{
   background-color: #000;
   color: #fff;
   transform: rotateY(180deg);
+  font-size: 0.7em;
 }
 
 .flip-card-front{
-  background-image: url("https://static.posters.cz/image/750/poster/back-to-the-future-i2795.jpg");
   background-size: cover;
   background-position: center;
 }

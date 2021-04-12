@@ -13,32 +13,41 @@
           <h1>boolflix</h1>
         </header-left>
         <header-right>
-          <input type="text" name="searchbar" v-model="searchInput">
-          <button type="button" name="button">Cerca film</button>
-          <p id="searchInput">{{searchInput}}</p>
+          <input type="text" name="searchbar" placeholder="Inserisci il titolo di un film"
+          v-model="searchInput">
+          <button type="button"
+          name="button"
+          @click="search"
+          >Cerca film</button>
         </header-right>
       </header>
 
-      <body>
+      <main>
         <div class="container">
-          <div class="flip-card">
+          <div class="flip-card"
+           v-if="searchResult.length"
+           v-for="(movie, index) in searchResult"
+            >
             <div class="flip-card-inner">
-              <div class="flip-card-front">
+              <div class="flip-card-front"
+              :style="`background-image: url('${movie.poster_path}')`">
               </div>
               <div class="flip-card-back">
                 <div class="text">
-                  <p class="title">Titolo: Ritorno al Futuro</p>
-                  <p class="original-title">Titolo originale: Back to the Future</p>
-                  <p class="valutation">Voto: 5</p>
-                  <p class="overview">Overview: Lorem ipsum dolor sit amet, consectetur adipisicing elit,...</p>
+                  <p class="title">Titolo: {{ movie.title}}</p>
+                  <p class="original-title">Titolo originale: {{ movie.original_title}}</p>
+                  <p class="original-title">Lingua: {{ movie.original_language}}</p>
+                  <p class="vote-average">Voto: {{ movie.vote_average}}</p>
+                  <p class="overview">Overview: {{ movie.overview}}</p>
                 </div>
               </div>
-
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-        <script src="./assets/js/main.js" charset="utf-8"></script>
-      </body>
+            </div>
+          </div>
+        </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="./assets/js/main.js" charset="utf-8"></script>
   </body>
 </html>

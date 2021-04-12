@@ -2,13 +2,26 @@
 
 Vue.config.devtools = true;
 
-console.log('ok')
 var app = new Vue({
   el: '#root',
-  data:{
-    searchInput: ''
+  data: {
+    searchInput: '',
+    searchResult: []
+  },
+
+  methods: {
+    search: function(){
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=59d9354a6ba6f6c0a81844a496f08846&query=${this.searchInput}&language=it`)
+      .then((response) => {
+        console.log(response.data.results);
+        console.log(this.searchResult)
+        this.searchResult = response.data.results
+        console.log(this.searchResult)
+        console.log(this.searchResult[0].poster_path);
+      });
+    }
   }
 
 
-  
+
 });
