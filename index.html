@@ -3,6 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/master.css">
     <title>BoolFlix</title>
   </head>
@@ -13,13 +18,19 @@
           <h1>boolflix</h1>
         </div>
         <div class="header-right">
-          <input type="text" name="searchbar" placeholder="Inserisci il titolo di un film"
-          v-model="searchInput">
-          <button type="button"
+          <div class="icon">
+              <i class="fas fa-search"></i>
+          </div>
+            <div class="input">
+              <input type="text" name="searchbar" placeholder="Titoli, persone, generi"
+              v-model="searchInput"
+              @keyup.enter="search">
+            </div>
+          <!-- <button type="button"
           name="button"
-          @click="search"
-          >Cerca film</button>
-        </div>        
+          @keyup="search"
+          >Ricerca film o serie tv</button> -->
+        </div>
       </header>
 
       <main>
@@ -30,7 +41,7 @@
             >
             <div class="flip-card-inner">
               <div class="flip-card-front"
-              :style="`background-image: url('${movie.poster_path}')`">
+              style="background-image: url('https://www.oggettifantastici.com/images/thumbs/0033379_back-to-the-future-ritorno-al-futuro-locandina-maxi-poster-76-61x91-cm_600.jpeg')">
               </div>
               <div class="flip-card-back">
                 <div class="text">
@@ -38,7 +49,6 @@
                   <p class="original-title">Titolo originale: {{ movie.original_title}}</p>
                   <p class="original-title">Lingua: {{ movie.original_language}}</p>
                   <p class="vote-average">Voto: {{ movie.vote_average}}</p>
-                  <p class="overview">Overview: {{ movie.overview}}</p>
                 </div>
               </div>
             </div>
