@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/master.css">
+    <title>BoolFlix</title>
+  </head>
+  <body>
+    <div id="root">
+      <header>
+        <header-left>
+          <h1>boolflix</h1>
+        </header-left>
+        <header-right>
+          <input type="text" name="searchbar" v-model="searchInput">
+          <button type="button" name="button">Cerca film</button>
+          <p id="searchInput">{{searchInput}}</p>
+        </header-right>
+      </header>
+
+      <body>
+        <div class="container">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+              </div>
+              <div class="flip-card-back">
+                <div class="text">
+                  <p class="title">Titolo: Ritorno al Futuro</p>
+                  <p class="original-title">Titolo originale: Back to the Future</p>
+                  <p class="valutation">Voto: 5</p>
+                  <p class="overview">Overview: Lorem ipsum dolor sit amet, consectetur adipisicing elit,...</p>
+                </div>
+              </div>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" charset="utf-8"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="./assets/js/main.js" charset="utf-8"></script>
+      </body>
+    </div>
+  </body>
+</html>
