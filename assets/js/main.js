@@ -22,6 +22,11 @@ var app = new Vue({
     }
   }
 
+  // if (message[lastIndex].text.length > 35) {
+  //   return message[lastIndex].text.substring(0, 35) + '...';
+  // } else {
+  //   return message[lastIndex].text
+  // }
 
 
 });

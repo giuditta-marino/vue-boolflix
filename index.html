@@ -9,17 +9,17 @@
   <body>
     <div id="root">
       <header>
-        <header-left>
+        <div class="header-left">
           <h1>boolflix</h1>
-        </header-left>
-        <header-right>
+        </div>
+        <div class="header-right">
           <input type="text" name="searchbar" placeholder="Inserisci il titolo di un film"
           v-model="searchInput">
           <button type="button"
           name="button"
           @click="search"
           >Cerca film</button>
-        </header-right>
+        </div>        
       </header>
 
       <main>
