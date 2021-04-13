@@ -136,3 +136,26 @@ main .contents{
 .flip-card-back .text .language img{
   height: 14px;
 }
+
+/* PERSONALIZZAZIONE SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  height: 15px;
+  background: #000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #E50914;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #A0060E;
+}
+/* PERSONALIZZAZIONE SCROLLBAR */
