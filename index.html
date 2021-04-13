@@ -45,8 +45,8 @@
               </div>
               <div class="flip-card-back">
                 <div class="text">
-                  <p class="title">Titolo: {{ movie.title}}</p>
-                  <p class="original-title">Titolo originale: {{ movie.original_title}}</p>
+                  <p class="title">Titolo: {{ getTitle(movie)}}</p>
+                  <p class="original-title">Titolo originale: {{ getOriginalTitle(movie) }}</p>
                   <div class="language">
                     <span>Language:</span>
                     <img :src="'./assets/img/' + movie.original_language + '.png'" alt="">
