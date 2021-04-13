@@ -13,13 +13,16 @@ var app = new Vue({
     availableFlag: ['en', 'it', 'es', 'fr']
   },
 
+  // mounted(){
+  //   this.voteTransform(this.searchResult.vote_average)
+  // },
+
   methods: {
     search: function(){
       this.searchResult =[];
 
       axios.get(`${this.uri}/search/movie?api_key=${this.api_key}&query=${this.searchInput}&language=${this.language}`)
       .then((response) => {
-        console.log(response.data.results);
 
         this.searchResult = [...this.searchResult, ...response.data.results];
 
@@ -50,6 +53,11 @@ var app = new Vue({
       } else if (obj.original_name) {
         return obj.original_name
       }
+    },
+
+    voteTransform: function(n){
+      n = Math.floor(n / 2);
+      return n
     }
 
 
