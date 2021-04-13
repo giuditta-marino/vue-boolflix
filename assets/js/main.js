@@ -9,7 +9,8 @@ var app = new Vue({
     searchResult: [],
     api_key: '59d9354a6ba6f6c0a81844a496f08846',
     uri: 'https://api.themoviedb.org/3',
-    language: 'it'
+    language: 'it',
+    availableFlag: ['en', 'it', 'es', 'fr']
   },
 
   methods: {
@@ -54,6 +55,5 @@ var app = new Vue({
 
 
   }
-
 
 });

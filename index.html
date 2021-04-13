@@ -40,16 +40,20 @@
            v-for="movie in searchResult"
             >
             <div class="flip-card-inner">
-              <div class="flip-card-front"
-              style="background-image: url('https://www.oggettifantastici.com/images/thumbs/0033379_back-to-the-future-ritorno-al-futuro-locandina-maxi-poster-76-61x91-cm_600.jpeg')">
+
+              <div class="flip-card-front" v-if="movie.poster_path == null" style="background-image: url('./assets/img/notavailable.jpg')"></div>
+
+              <div class="flip-card-front" v-else-if="movie.poster_path" :style="`background-image: url('https://image.tmdb.org/t/p/w185${movie.poster_path}')`">
               </div>
+
               <div class="flip-card-back">
                 <div class="text">
                   <p class="title">Titolo: {{ getTitle(movie)}}</p>
                   <p class="original-title">Titolo originale: {{ getOriginalTitle(movie) }}</p>
                   <div class="language">
                     <span>Language:</span>
-                    <img :src="'./assets/img/' + movie.original_language + '.png'" alt="">
+                    <img v-if="availableFlag.includes(movie.original_language)" :src="'./assets/img/' + movie.original_language + '.png'" alt="">
+                    <span v-else>{{movie.original_language}}</span>
 
                   </div>
                   <p class="vote-average">Voto: {{ movie.vote_average}}</p>
