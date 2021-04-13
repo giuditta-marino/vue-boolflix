@@ -56,7 +56,9 @@
                     <span v-else>{{movie.original_language}}</span>
 
                   </div>
-                  <p class="vote-average">Voto: {{ voteTransform(movie.vote_average)}}</p>
+                  <p class="vote-average">Voto: {{ voteTransform(movie.vote_average)}}
+                  <i class="far fa-star" v-for="star in voteTransform(movie.vote_average)"></i>
+                </p>
                 </div>
               </div>
             </div>

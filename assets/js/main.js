@@ -10,11 +10,11 @@ var app = new Vue({
     api_key: '59d9354a6ba6f6c0a81844a496f08846',
     uri: 'https://api.themoviedb.org/3',
     language: 'it',
-    availableFlag: ['en', 'it', 'es', 'fr']
+    availableFlag: ['en', 'it', 'es', 'fr'],
   },
 
   // mounted(){
-  //   this.voteTransform(this.searchResult.vote_average)
+
   // },
 
   methods: {
@@ -27,16 +27,18 @@ var app = new Vue({
         this.searchResult = [...this.searchResult, ...response.data.results];
 
         console.log(this.searchResult);
+
+        axios.get(`https://api.themoviedb.org/3/search/tv?api_key=59d9354a6ba6f6c0a81844a496f08846&query=${this.searchInput}&language=it`)
+        .then((response) => {
+          console.log(response.data.results);
+
+          this.searchResult = [...this.searchResult, ...response.data.results];
+
+          console.log(this.searchResult);
+        });
       });
 
-      axios.get(`https://api.themoviedb.org/3/search/tv?api_key=59d9354a6ba6f6c0a81844a496f08846&query=${this.searchInput}&language=it`)
-      .then((response) => {
-        console.log(response.data.results);
 
-        this.searchResult = [...this.searchResult, ...response.data.results];
-
-        console.log(this.searchResult);
-      });
     },
 
     getTitle: function(obj){
@@ -56,8 +58,10 @@ var app = new Vue({
     },
 
     voteTransform: function(n){
+
       n = Math.floor(n / 2);
-      return n
+      return n;
+
     }
 
 
