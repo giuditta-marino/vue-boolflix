@@ -37,7 +37,7 @@
         <div class="container">
           <div class="flip-card"
            v-if="searchResult.length"
-           v-for="(movie, index) in searchResult"
+           v-for="movie in searchResult"
             >
             <div class="flip-card-inner">
               <div class="flip-card-front"
@@ -47,7 +47,11 @@
                 <div class="text">
                   <p class="title">Titolo: {{ movie.title}}</p>
                   <p class="original-title">Titolo originale: {{ movie.original_title}}</p>
-                  <p class="original-title">Lingua: {{ movie.original_language}}</p>
+                  <div class="language">
+                    <span>Language:</span>
+                    <img :src="'./assets/img/' + movie.original_language + '.png'" alt="">
+
+                  </div>
                   <p class="vote-average">Voto: {{ movie.vote_average}}</p>
                 </div>
               </div>
