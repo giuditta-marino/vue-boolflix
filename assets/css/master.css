@@ -17,9 +17,15 @@ body{
 header{
   font-family: 'Bebas Neue', cursive;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /* justify-content: space-between; */
   align-items: center;
-  padding: 30px 110px;
+  padding: 45px 110px;
+}
+
+header .header-left{
+  /* margin-left: 15%;
+  width: 34%; */
 }
 
 header .header-left>h1{
@@ -61,7 +67,7 @@ header .header-right button{
 }
 
 main .container{
-  padding: 0 110px;
+  padding: 20px 110px;
   margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
@@ -70,12 +76,13 @@ main .container{
 
 
 .flip-card{
-  background-color: transparent;
-  width: 180px;
-  height: 280px;
-  perspective: 1000px;
+  /* background-color: transparent; */
+  width: calc(1200px / 4 - 16px);
+  height: calc((1200px / 4 - 16px) * 1.45);
+  /* perspective: 1000px; */
   cursor: pointer;
   border: 1px solid #fff;
+  margin: 10px;
 }
 
 .flip-card .flip-card-front{
