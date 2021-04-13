@@ -17,19 +17,14 @@ body{
 header{
   font-family: 'Bebas Neue', cursive;
   display: flex;
-  flex-direction: column;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
-  padding: 45px 110px;
-}
-
-header .header-left{
-  /* margin-left: 15%;
-  width: 34%; */
+  padding: 55px 130px;
+  padding-bottom: 20px;
 }
 
 header .header-left>h1{
-  color: red;
+  color: #E50914;
   text-transform: uppercase;
   font-size: 3em;
 }
@@ -66,45 +61,47 @@ header .header-right button{
   border: none;
 }
 
-main .container{
+main .contents{
   padding: 20px 110px;
   margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   background-color: #000;
 }
 
-
 .flip-card{
-  /* background-color: transparent; */
   width: calc(1200px / 4 - 16px);
   height: calc((1200px / 4 - 16px) * 1.45);
-  /* perspective: 1000px; */
   cursor: pointer;
   border: 1px solid #fff;
-  margin: 10px;
+  margin: 15px;
 }
 
 .flip-card .flip-card-front{
   background-size: cover;
   background-position: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.flip-card .flip-card-back{
+  opacity: 0;
+  transition: opacity 0.4s linear;
+  background-color: #000;
+  color: #fff;
+  font-size: 1em;
+}
+
+.flip-card:hover .flip-card-back{
+  opacity: 1;
 }
 
 .flip-card .flip-card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  /* transition: transform 0.6s;
-  transform-style: preserve-3d; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.flip-card:hover .flip-card-front{
-  display: none;
-}
-
-.flip-card:hover .flip-card-back{
-  display: block;
 }
 
 .flip-card-front, .flip-card-back {
@@ -115,25 +112,27 @@ main .container{
   backface-visibility: hidden;
 }
 
-.flip-card-back{
-  display: none;
-  background-color: #000;
-  color: #fff;
-  /* transform: rotateY(180deg); */
-  font-size: 1.1em;
-}
-
-
 .flip-card-back .text {
-  padding: 20px 8px;
+  padding: 20px;
 }
 
-.flip-card-back .language img{
+.flip-card-back .text .title{
+  padding-top: 20px;
+  color: #E50914;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+}
+
+.flip-card-back .text .subtitle{
+  padding-top: 40px;
+}
+
+.flip-card-back .text .subtitle .vote-average i{
+  color: #FFC300;
+}
+
+.flip-card-back .text .language img{
   height: 14px;
-}
-
-
-.flip-card-front{
-  background-size: cover;
-  background-position: center;
 }
