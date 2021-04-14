@@ -41,7 +41,14 @@
             >
             <div class="flip-card-inner">
 
-              <div class="flip-card-front" v-if="movie.poster_path == null" style="background-image: url('./assets/img/notavailable.jpg')"></div>
+              <div class="flip-card-front"
+              v-if="movie.poster_path == null">
+                <div id="not-available">Sorry, poster not available
+                  <div class="icon">
+                    <i class="fas fa-wrench"></i>
+                  </div>
+                </div>
+              </div>
 
               <div class="flip-card-front" v-else-if="movie.poster_path" :style="`background-image: url('https://image.tmdb.org/t/p/w342${movie.poster_path}')`">
               </div>
@@ -50,17 +57,22 @@
                 <div class="text">
                   <p class="title">{{ getTitle(movie)}}</p>
                   <div class="subtitle">
-                    <p class="original-title" v-if="getTitle(movie) !== getOriginalTitle(movie)">Titolo originale: {{ getOriginalTitle(movie) }}</p>
+                    <div class="original-title" v-if="getTitle(movie) !== getOriginalTitle(movie)">{{ getOriginalTitle(movie) }}</div>
                     <div class="language">
-                      <span>Lingua:</span>
-                      <img v-if="availableFlag.includes(movie.original_language)" :src="'./assets/img/' + movie.original_language + '.png'" alt="">
-                      <span v-else>{{movie.original_language}}</span>
+                      Lingua
+                      <div class="flag"
+                      v-if="availableFlag.includes(movie.original_language)" >
+                        <img :src="`./assets/img/${movie.original_language}.png`" alt="">
+                      </div>
+                      <div v-else>{{movie.original_language}}</div>
 
                     </div>
-                    <p class="vote-average">Valutazione:
-                      <i class="fas fa-star" v-for="star in voteTransform(movie.vote_average)"></i>
-                      <i class="far fa-star" v-for="star in 5 - voteTransform(movie.vote_average)"></i>
-                    </p>
+                    <div class="vote-average">Valutazione
+                      <div class="stars">
+                        <i class="fas fa-star" v-for="star in voteTransform(movie.vote_average)"></i>
+                        <i class="far fa-star" v-for="star in 5 - voteTransform(movie.vote_average)"></i>
+                      </div>
+                    </div>
                   </div>
 
                 </div>

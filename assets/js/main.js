@@ -8,7 +8,7 @@ var app = new Vue({
     api_key: '59d9354a6ba6f6c0a81844a496f08846',
     uri: 'https://api.themoviedb.org/3',
     language: 'it',
-    availableFlag: ['en', 'it', 'es', 'fr', 'pt', 'ru', 'de', 'zh'],
+    availableFlag: ['en', 'it', 'es', 'fr', 'pt', 'ru', 'de', 'zh          '],
   },
 
   mounted(){
@@ -26,7 +26,7 @@ var app = new Vue({
 
         console.log(this.searchResult);
 
-        axios.get(`https://api.themoviedb.org/3/search/tv?api_key=59d9354a6ba6f6c0a81844a496f08846&query=${this.searchInput}&language=it`)
+        axios.get(`${this.uri}/search/tv?api_key=${this.api_key}&query=${this.searchInput}&language=${this.language}`)
         .then((response) => {
           console.log(response.data.results);
 

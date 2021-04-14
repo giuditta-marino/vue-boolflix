@@ -49,6 +49,7 @@ header .header-right input{
   border-bottom: 1px solid #fff;
   margin-right: 10px;
   font-size: 1.1em;
+  caret-color: #E50914;
 }
 
 header .header-right input:focus{
@@ -61,9 +62,14 @@ header .header-right button{
   border: none;
 }
 
+main{
+  display: flex;
+  /* justify-content: center; */
+}
+
 main .contents{
   padding: 20px 110px;
-  margin-top: 50px;
+  margin-top: 25px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -71,11 +77,11 @@ main .contents{
 }
 
 .flip-card{
-  width: calc(1200px / 4 - 16px);
-  height: calc((1200px / 4 - 16px) * 1.45);
+  width: calc(980px / 5 - 18px);
+  height: calc((980px / 5 - 18px) * 1.45);
   cursor: pointer;
   border: 1px solid #fff;
-  margin: 15px;
+  margin: 9px;
 }
 
 .flip-card .flip-card-front{
@@ -83,6 +89,21 @@ main .contents{
   background-position: center;
   background-size: cover;
   background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flip-card .flip-card-front #not-available{
+  text-align: center;
+  color: #E50914;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2em;
+}
+
+.flip-card .flip-card-front #not-available .icon i{
+  color: #E50914;
+  font-size: 0.7em;
 }
 
 .flip-card .flip-card-back{
@@ -90,7 +111,6 @@ main .contents{
   transition: opacity 0.4s linear;
   background-color: #000;
   color: #fff;
-  font-size: 1em;
 }
 
 .flip-card:hover .flip-card-back{
@@ -113,27 +133,46 @@ main .contents{
 }
 
 .flip-card-back .text {
+  font-size: 0.8em;
   padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
 
 .flip-card-back .text .title{
-  padding-top: 20px;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.8em;
   color: #E50914;
-  font-size: 1.4em;
   text-transform: uppercase;
   font-weight: 700;
   text-align: center;
 }
 
 .flip-card-back .text .subtitle{
-  padding-top: 40px;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.flip-card-back .text .subtitle .vote-average i{
+.flip-card-back .text .subtitle >*{
+  padding-top: 4px;
+}
+
+.flip-card-back .text .subtitle .original-title{
+  font-size: 0.6em;
+}
+
+.flip-card-back .text .subtitle .stars i{
+  padding-top: 2px;
   color: #FFC300;
 }
 
-.flip-card-back .text .language img{
+.flip-card-back .text .language .flag img{
+  padding-top: 4px;
   height: 14px;
 }
 
