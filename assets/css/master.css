@@ -96,13 +96,14 @@ main .contents{
 
 .flip-card .flip-card-front #not-available{
   text-align: center;
-  color: #E50914;
+  color: #fff;
   font-family: 'Bebas Neue', cursive;
-  font-size: 2em;
+  font-size: 1.8em;
+  padding: 0 5px;
 }
 
 .flip-card .flip-card-front #not-available .icon i{
-  color: #E50914;
+  color: #fff;
   font-size: 0.7em;
 }
 
@@ -111,6 +112,10 @@ main .contents{
   transition: opacity 0.4s linear;
   background-color: #000;
   color: #fff;
+}
+
+.flip-card:hover{
+  transform: scale(1.1, 1.1);
 }
 
 .flip-card:hover .flip-card-back{
@@ -172,28 +177,28 @@ main .contents{
 }
 
 .flip-card-back .text .language .flag img{
-  padding-top: 4px;
-  height: 14px;
+  padding-top: 3px;
+  height: 16px;
 }
 
+.no-results{
+  color: #fff;
+}
+
+
 /* PERSONALIZZAZIONE SCROLLBAR */
-/* width */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-  height: 15px;
   background: #000;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #E50914;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #A0060E;
 }

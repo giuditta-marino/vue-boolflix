@@ -37,7 +37,7 @@
         <div class="contents">
           <div class="flip-card"
            v-if="searchResult.length"
-           v-for="movie in searchResult"
+           v-for="(movie, i) in searchResult"
             >
             <div class="flip-card-inner">
 
@@ -74,12 +74,17 @@
                       </div>
                     </div>
                   </div>
+                  <div class="cast" @click=showCast(i)>Scopri il cast</div>
 
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- <div class="no-results" v-if="!searchResult.length & searchInput.length"
+        >
+          <p>Spiacente, la tua ricerca non ha prodotto alcun risultato</p>
+        </div> -->
       </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" charset="utf-8"></script>
