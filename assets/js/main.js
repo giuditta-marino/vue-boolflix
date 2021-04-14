@@ -9,7 +9,8 @@ var app = new Vue({
     uri: 'https://api.themoviedb.org/3',
     language: 'it',
     availableFlag: ['en', 'it', 'es', 'fr', 'pt', 'ru', 'de', 'zh          '],
-    cast: []
+    cast: [],
+    isHidden: false
   },
 
   mounted(){
@@ -19,6 +20,7 @@ var app = new Vue({
   methods: {
     search: function(){
       this.searchResult =[];
+      this.isHidden = false;
 
       axios.get(`${this.uri}/search/movie?api_key=${this.api_key}&query=${this.searchInput}&language=${this.language}`)
       .then((response) => {
@@ -62,6 +64,7 @@ var app = new Vue({
       // al click, devo prendere il film specifico
       // e prenderne l'id
       // ${this.uri}/search/
+      this.cast =[];
 
       console.log(this.searchResult[i].id);
       const id = this.searchResult[i].id;

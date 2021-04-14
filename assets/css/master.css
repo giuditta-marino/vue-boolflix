@@ -64,7 +64,8 @@ header .header-right button{
 
 main{
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
+  align-items: center;
 }
 
 main .contents{
@@ -176,15 +177,41 @@ main .contents{
   color: #FFC300;
 }
 
-.flip-card-back .text .language .flag img{
+.flip-card-back .text .subtitle .language .flag img{
   padding-top: 3px;
   height: 16px;
 }
 
+.flip-card-back button.cast{
+  margin-top: 5px;
+  padding: 3px 0;
+  background-color: #000;
+  color: #E50914;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/*
 .no-results{
   color: #fff;
 }
+ */
 
+.info-cast{
+  color: #E50914;
+  margin-top: 100px;
+  border: 1px solid #fff;
+  padding: 50px 50px;
+}
+
+.info-cast ul{
+  list-style: none;
+}
+
+.info-cast ul li{
+  font-size:
+  1.3em;
+}
 
 /* PERSONALIZZAZIONE SCROLLBAR */
 ::-webkit-scrollbar {

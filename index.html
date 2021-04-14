@@ -34,7 +34,7 @@
       </header>
 
       <main>
-        <div class="contents">
+        <div class="contents" v-if=!isHidden>
           <div class="flip-card"
            v-if="searchResult.length"
            v-for="(movie, i) in searchResult"
@@ -73,9 +73,8 @@
                         <i class="far fa-star" v-for="star in 5 - voteTransform(movie.vote_average)"></i>
                       </div>
                     </div>
+                    <button class="cast" @click="showCast(i); isHidden = true">Scopri il cast</button>
                   </div>
-                  <div class="cast" @click=showCast(i)>Scopri il cast</div>
-
                 </div>
               </div>
             </div>
@@ -85,6 +84,12 @@
         >
           <p>Spiacente, la tua ricerca non ha prodotto alcun risultato</p>
         </div> -->
+
+        <div class="info-cast" v-if="isHidden">
+          <ul>
+            <li v-for="actor in cast">{{actor}}</li>
+          </ul>
+        </div>
       </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" charset="utf-8"></script>
