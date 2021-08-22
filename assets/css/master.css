@@ -8,6 +8,14 @@ body{
   font-family: 'Hind Siliguri', sans-serif;
 }
 
+[v-cloak] {
+  display: none;
+}
+
+a{
+  text-decoration: none;
+}
+
 #root{
   height: 100vh;
   background-color: #000;
@@ -19,11 +27,11 @@ header{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 55px 130px;
-  padding-bottom: 20px;
+  padding: 40px;
+  padding-top: 15px;
 }
 
-header .header-left>h1{
+header .header-left>a h1{
   color: #E50914;
   text-transform: uppercase;
   font-size: 3em;
@@ -62,26 +70,50 @@ header .header-right button{
   border: none;
 }
 
-main{
+/* CATEGORIA ACTIVE */
+.category ul{
+  list-style: none;
   display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.category ul li a{
+  color: #fff;
+  font-size: 1.2em;
+  margin-right: 20px;
+}
+
+.category ul li a.active{
+  color: #E50914;
+}
+
+.category ul li a:hover{
+  color: #E50914;
+}
+
+.genre select{
+  outline: none;
+}
+
+main{
+  padding: 0 50px;
+  background-color: #000;
 }
 
 main .contents{
-  padding: 20px 110px;
   margin-top: 25px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #000;
+}
+
+.title{
+  color: #fff;
 }
 
 .flip-card{
-  width: calc(980px / 5 - 18px);
-  height: calc((980px / 5 - 18px) * 1.45);
+  width: calc(980px / 4 - 18px);
+  height: calc((980px / 4 - 18px) * 1.45);
   cursor: pointer;
-  border: 1px solid #fff;
   margin: 9px;
 }
 
