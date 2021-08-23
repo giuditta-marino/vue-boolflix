@@ -45,7 +45,7 @@ header .header-right{
 header .header-right i{
   padding-right: 10px;
   color: #fff;
-  font-size: 1.8em;
+  font-size: 1.5em;
 }
 
 header .header-right input{
@@ -108,6 +108,7 @@ main .contents{
 
 .title{
   color: #fff;
+  font-size: 1.3em;
 }
 
 .flip-card{

@@ -27,7 +27,7 @@
         <div class="genre">
           <select class="" name="genre" v-model="selectedGenre">
             <option value="">Tutti</option>
-            <option v-for="genre in genres">{{genre}}</option>
+            <option v-for="genre in genres" :value=genre.id>{{genre.name}}</option>
           </select>
         </div>
         <div class="header-right">
@@ -48,10 +48,10 @@
 
       <main>
         <div class="title">
-          <h3 @click="showGenre">{{resultsTitle()}}</h3>
+          <h3>{{resultsTitle()}}</h3>
         </div>
-
-        <div class="contents" v-if="popular">
+        <!-- popolari -->
+        <div class="contents" v-if="popular && !isHidden">
           <div class="flip-card"
            v-if="!searchResult.length"
            v-for="(movie, i) in filterCategory(popularAll)"
@@ -90,13 +90,14 @@
                         <i class="far fa-star" v-for="star in 5 - voteTransform(movie.vote_average)"></i>
                       </div>
                     </div>
-                    <button class="cast" @click="showCast(i); isHidden = true">Scopri il cast</button>
+                    <button class="cast" @click="showCastPop(i); isHidden = true">Scopri il cast</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- risultati ricerca -->
         <div class="contents" v-if="!isHidden">
           <div class="flip-card"
            v-if="searchResult.length"
