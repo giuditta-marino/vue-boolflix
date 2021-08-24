@@ -1,5 +1,23 @@
 Vue.config.devtools = true;
 
+// function filmFunction() {
+//   var x = document.getElementById("ulFilm");
+//   if (x.style.visibility === "hidden") {
+//     x.style.visibility = "visible";
+//   } else {
+//     x.style.visibility = "hidden";
+//   }
+// }
+//
+// function serieFunction() {
+//   var x = document.getElementById("ulSerie");
+//   if (x.style.visibility === "hidden") {
+//     x.style.visibility = "visible";
+//   } else {
+//     x.style.visibility = "hidden";
+//   }
+// }
+
 var app = new Vue({
   el: '#root',
   data: {
@@ -10,9 +28,11 @@ var app = new Vue({
     language: 'it',
     availableFlag: ['en', 'it', 'es', 'fr', 'pt', 'ru', 'de', 'zh'],
     cast: [],
-    isHidden: false,
+    cardHidden: false,
     popular: true,
     category: 'Titoli',
+    movieGenres: [],
+    serieGenres: [],
     genres: [],
     firstPage: true,
     selectedGenre: '',
@@ -21,6 +41,10 @@ var app = new Vue({
     popularAll:[],
     movieResult: [],
     seriesResult: [],
+    isActive: false,
+    totPages: '',
+    totalResults: [],
+    currentPage:'',
   },
 
   mounted(){
@@ -39,35 +63,67 @@ var app = new Vue({
     });
 
     // Prendo i generi dei film e li pusho in genres
+    // axios.get(`${this.uri}/genre/movie/list?api_key=${this.api_key}`)
+    // .then((response) => {
+    //   this.genres = [...response.data.genres];
+    // });
     axios.get(`${this.uri}/genre/movie/list?api_key=${this.api_key}`)
-    .then((response) => {
-      this.genres = [...response.data.genres];
+    .then((response)=>{
+      this.movieGenres = [...response.data.genres];
+        console.log(this.movieGenres);
     });
+
 
     // Prendo i generi delle serie e li pusho in genres se non sono contenuti già usando due variabili di appoggio
     axios.get(`${this.uri}/genre/tv/list?api_key=${this.api_key}`)
-    .then((response) => {
-        let movieGenres =[];
-        this.genres.forEach((item, i) => {
+    .then((response)=>{
+      this.serieGenres = [...response.data.genres];
+        console.log(this.serieGenres);
+
+        this.genres = [... this.movieGenres];
+
+        let movieGenres = [];
+        this.movieGenres.forEach((item, i) => {
           movieGenres.push(item.name)
         });
-        let serieGenres = [... response.data.genres];
-        serieGenres.forEach((item, i) => {
+
+        this.serieGenres.forEach((item, i) => {
           if (!movieGenres.includes(item.name)) {
             this.genres.push(item);
           }
         });
-        // ordino alfabeticamente i nomi dei generi
-        this.genres.sort(function(a, b){
-          if(a.name < b.name) {
-            return -1;
-          }
-          if(a.name > b.name) {
-            return 1;
-          }
-          return 0;
-        });
+
+
+      // ordino alfabeticamente i nomi dei generi
+      this.genres.sort((a, b) => a.name.localeCompare(b.name));
+
+      console.log(this.genres);
     });
+
+
+    // axios.get(`${this.uri}/genre/tv/list?api_key=${this.api_key}`)
+    // .then((response) => {
+    //     let movieGenres =[];
+    //     this.genres.forEach((item, i) => {
+    //       movieGenres.push(item.name)
+    //     });
+    //     let serieGenres = [... response.data.genres];
+    //     serieGenres.forEach((item, i) => {
+    //       if (!movieGenres.includes(item.name)) {
+    //         this.genres.push(item);
+    //       }
+    //     });
+    //     // ordino alfabeticamente i nomi dei generi
+    //     this.genres.sort((a, b) => a.name.localeCompare(b.name));
+    //       un altro modo di scrivere la funzione
+    //       {if(a.name < b.name) {
+    //         return -1;
+    //       }
+    //       if(a.name > b.name) {
+    //         return 1;
+    //       }
+    //       return 0;}
+    // });
 
   },
 
@@ -75,13 +131,15 @@ var app = new Vue({
     // funzione di ricerca tramite chiamate axios
     search: function(){
       this.searchResult = [];
-      this.isHidden = false;
+      this.cardHidden = false;
       this.firstPage = false;
       this.category = 'Titoli';
+
 
       axios.get(`${this.uri}/search/movie?api_key=${this.api_key}&query=${this.searchInput}&language=${this.language}`)
       .then((response) => {
         // salvo in una variabile i risultati dei film
+        console.log(response.data);
         this.movieResult = [...response.data.results];
         // salvo in searchResult i risultati dei film per sommarli a quelli delle serie
         this.searchResult = [...this.searchResult, ...response.data.results];
@@ -92,6 +150,14 @@ var app = new Vue({
           this.seriesResult = [...response.data.results];
           // sommo in searchResult i risultati delle serie a quelli dei film
           this.searchResult = [...this.searchResult, ...response.data.results];
+
+          // PROVA PAGINATION
+          // this.totPages = response.data.total_pages;
+          // this.totalResults = [...response.data.total_results];
+          //
+          // console.log(totPages);
+          // console.log(totalResults);
+
         });
       });
     },
@@ -212,6 +278,8 @@ var app = new Vue({
      this.searchInput = '';
      this.category = 'Titoli';
      this.selectedGenre = '';
+     this.isActive = false;
+     this.cardHidden = false;
    },
 
    // titolo dinamico che indica il contenuto dei risultati
@@ -222,6 +290,19 @@ var app = new Vue({
         return `Risultati della ricerca - ${this.category}`;
       }
     },
+
+    getSelectedGenre: function(id){
+      this.selectedGenre = id;
+      console.log(id);
+    },
+
+    toggle: function(){
+      if (!this.isActive) {
+        this.isActive = true;
+      } else {
+        this.isActive = false;
+      }
+    }
   }
 
 });

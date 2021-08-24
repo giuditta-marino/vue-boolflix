@@ -13,29 +13,32 @@
   </head>
   <body>
     <div id="root" v-cloak>
+
+      <!-- HEADER -->
       <header>
+        <!-- LOGO -->
         <div class="header-left">
           <a href="#" @click = homePage()><h1>boolflix</h1></a>
         </div>
-        <div class="category">
-          <ul>
-            <li><a href="#" :class="(category == 'Titoli') ? 'active' : ''" @click="selectCategory">Titoli</a></li>
-            <li><a href="#" :class="(category == 'Film') ? 'active' : ''" @click="selectCategory">Film</a></li>
-            <li><a href="#" :class="(category == 'Serie TV') ? 'active' : ''" @click="selectCategory">Serie TV</a></li>
-          </ul>
-        </div>
-        <div class="genre">
-          <select class="" name="genre" v-model="selectedGenre">
-            <option value="">Tutti</option>
-            <option v-for="genre in genres" :value=genre.id>{{genre.name}}</option>
-          </select>
+
+        <!-- CATEGORIA E SCELTA GENERE -->
+        <div class="category-genre">
+          <div class="category">
+            <ul>
+              <li><a href="#" :class="(category == 'Titoli') ? 'active' : ''" @click="selectCategory">Titoli</a></li>
+              <li><a href="#" :class="(category == 'Film') ? 'active' : ''" @click="selectCategory">Film</a></li>
+              <li><a href="#" :class="(category == 'Serie TV') ? 'active' : ''" @click="selectCategory">Serie TV</a></li>
+              <li class="toggle" @click="toggle"><a href="#">Genere</a></button>
+            </ul>
+
+          </div>
         </div>
         <div class="header-right">
           <div class="icon">
               <i class="fas fa-search"></i>
           </div>
             <div class="input">
-              <input type="text" name="searchbar" placeholder="Titoli, persone, generi"
+              <input type="text" name="searchbar" placeholder="Cerca un titolo..."
               v-model="searchInput"
               @keyup.enter="search">
             </div>
@@ -46,12 +49,41 @@
         </div>
       </header>
 
+      <!-- SELEZIONE GENERE -->
+      <div class="genre">
+        <!-- <select class="" name="genre" v-model="selectedGenre">
+          <option value="">Scegli il genere</option>
+          <option v-for="genre in genres" :value=genre.id>{{genre.name}}</option>
+        </select> -->
+        <!-- UL VISIBILI SE isActive -->
+
+        <!-- UL GENERI FILM E SERIE -->
+        <ul v-if="category == 'Titoli'" :class="{active:isActive}">
+          <!-- <li>Scegli il genere</li> -->
+          <li v-for="genre in genres"  @click="getSelectedGenre(genre.id)">{{genre.name}}</li>
+        </ul>
+
+        <!-- UL GENERI FILM -->
+        <ul v-if="category == 'Film'" :class="{active:isActive}">
+          <!-- <li>Scegli il genere</li> -->
+          <li v-for="genre in movieGenres"  @click="getSelectedGenre(genre.id)">{{genre.name}}</li>
+        </ul>
+
+        <!-- UL GENERI SERIE -->
+        <ul v-if="category == 'Serie TV'" :class="{active:isActive}">
+          <li v-for="genre in serieGenres" @click="getSelectedGenre(genre.id)">{{genre.name}}</li>
+        </ul>
+      </div>
+
       <main>
-        <div class="title">
-          <h3>{{resultsTitle()}}</h3>
+        <div class="head">
+          <div class="title" v-if="!cardHidden">
+            <h3>{{resultsTitle()}}</h3>
+          </div>
         </div>
-        <!-- popolari -->
-        <div class="contents" v-if="popular && !isHidden">
+
+        <!-- CARD POPOLARI IN HOMEPAGE -->
+        <div class="contents" v-if="popular && !cardHidden">
           <div class="flip-card"
            v-if="!searchResult.length"
            v-for="(movie, i) in filterCategory(popularAll)"
@@ -90,15 +122,16 @@
                         <i class="far fa-star" v-for="star in 5 - voteTransform(movie.vote_average)"></i>
                       </div>
                     </div>
-                    <button class="cast" @click="showCastPop(i); isHidden = true">Scopri il cast</button>
+                    <button class="cast" @click="showCastPop(i); cardHidden = true">Scopri il cast</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- risultati ricerca -->
-        <div class="contents" v-if="!isHidden">
+
+        <!-- CARD RISULTATI DI RICERCA -->
+        <div class="contents" v-if="!cardHidden">
           <div class="flip-card"
            v-if="searchResult.length"
            v-for="(movie, i) in filterCategory(searchResult)"
@@ -137,24 +170,34 @@
                         <i class="far fa-star" v-for="star in 5 - voteTransform(movie.vote_average)"></i>
                       </div>
                     </div>
-                    <button class="cast" @click="showCast(i); isHidden = true">Scopri il cast</button>
+                    <button class="cast" @click="showCast(i); cardHidden = true">Scopri il cast</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- <div class="no-results" v-if="!searchResult.length & searchInput.length"
-        >
-          <p>Spiacente, la tua ricerca non ha prodotto alcun risultato</p>
-        </div> -->
 
-        <div class="info-cast" v-if="isHidden">
-          <ul>
-            <li v-for="actor in cast">{{actor}}</li>
-          </ul>
-          <i class="fas fa-arrow-circle-left" @click="isHidden = false"></i>
+
+        <div class="info-cast" v-if="cardHidden">
+          <div class="icon">
+            <i class="fas fa-angle-double-left" @click="cardHidden = false"></i>
+          </div>
+
+          <div class="actors">
+            <h2>Cast:</h2>
+            <ul>
+              <li v-for="actor in cast"><a href="#">{{actor}}</a></li>
+            </ul>
+          </div>
+
         </div>
+
+        <!-- PROVA PAGINATION -->
+        <!-- <div v-if="totPages > 0" class="navigator">
+  			  <p>Pagina <input v-on:change="search"  v-on:focusout="search" v-model="currentPage" min="1" :max="totPages" type="number"> di {{totPages}}</p>
+  			  <p>Totale risultati: {{totalResults}}</p>
+  		</div> -->
       </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" charset="utf-8"></script>

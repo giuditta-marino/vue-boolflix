@@ -6,6 +6,7 @@
 
 body{
   font-family: 'Hind Siliguri', sans-serif;
+  background-color: #000;
 }
 
 [v-cloak] {
@@ -18,7 +19,6 @@ a{
 
 #root{
   height: 100vh;
-  background-color: #000;
   position: relative;
 }
 
@@ -29,6 +29,16 @@ header{
   align-items: center;
   padding: 40px;
   padding-top: 15px;
+}
+
+.prova{
+  font-family: 'Bebas Neue', cursive;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  padding-top: 15px;
+  padding: 0 350px;
 }
 
 header .header-left>a h1{
@@ -45,7 +55,7 @@ header .header-right{
 header .header-right i{
   padding-right: 10px;
   color: #fff;
-  font-size: 1.5em;
+  font-size: 1.4em;
 }
 
 header .header-right input{
@@ -57,6 +67,7 @@ header .header-right input{
   border-bottom: 1px solid #fff;
   margin-right: 10px;
   font-size: 1.1em;
+  font-weight: 500;
   caret-color: #E50914;
 }
 
@@ -71,6 +82,11 @@ header .header-right button{
 }
 
 /* CATEGORIA ACTIVE */
+.category-genre{
+  padding: 0 40px;
+  display: flex;
+}
+
 .category ul{
   list-style: none;
   display: flex;
@@ -78,8 +94,10 @@ header .header-right button{
 
 .category ul li a{
   color: #fff;
-  font-size: 1.2em;
-  margin-right: 20px;
+  font-size: 1.3em;
+  font-weight: 700;
+  margin-right: 35px;
+  letter-spacing: 1px;
 }
 
 .category ul li a.active{
@@ -90,8 +108,48 @@ header .header-right button{
   color: #E50914;
 }
 
-.genre select{
+/* .genre select{
+  margin-left: 50px;
   outline: none;
+  background-color: #000;
+  color: #fff;
+  font-size: 1.3em;
+  font-weight: 700;
+  font-family: 'Bebas Neue', cursive;
+  border: none;
+  letter-spacing: 1px;
+}
+
+.genre select > option{
+  letter-spacing: 1px;
+} */
+
+.genre ul{
+  color: white;
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 38px;
+  display: none;
+}
+
+ul.active{
+  display: flex;
+}
+
+.genre ul>li{
+  padding: 3px 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  background-color: #E50914;
+  color: #000;
+  font-weight: 600;
+  margin: 4px 6px;
+}
+.genre ul>li:hover{
+  background-color: #FF0A16;
 }
 
 main{
@@ -107,8 +165,9 @@ main .contents{
 }
 
 .title{
+  padding-top: 30px;
   color: #fff;
-  font-size: 1.3em;
+  font-size: 1.1em;
 }
 
 .flip-card{
@@ -207,7 +266,7 @@ main .contents{
 
 .flip-card-back .text .subtitle .stars i{
   padding-top: 2px;
-  color: #FFC300;
+  color: #fff;
 }
 
 .flip-card-back .text .subtitle .language .flag img{
@@ -216,34 +275,49 @@ main .contents{
 }
 
 .flip-card-back button.cast{
-  margin-top: 5px;
+  margin-top: 8px;
   padding: 3px 0;
   background-color: #000;
   color: #E50914;
   font-weight: 700;
   cursor: pointer;
+  border: none;
 }
 
-/*
-.no-results{
-  color: #fff;
+.flip-card-back button.cast:hover{
+  transform: scale(1.2);
 }
- */
-
 .info-cast{
   color: #E50914;
   margin-top: 100px;
   border: 1px solid #fff;
   padding: 50px 50px;
+  display: flex;
+  width: 350px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.info-cast .icon i{
+  font-size: 2em;
+  margin-right: 40px;
+  cursor: pointer;
+}
+
+.info-cast .icon i:hover{
+  transform: scale(1.2);
 }
 
 .info-cast ul{
   list-style: none;
 }
 
-.info-cast ul li{
-  font-size:
-  1.3em;
+.info-cast ul li a{
+  font-size: 1.3em;
+  color: #E50914;
 }
 
 /* PERSONALIZZAZIONE SCROLLBAR */
